@@ -2,11 +2,10 @@ import React from "react";
 
 function ForgetPassword() {
     return (
-        <div>
-            {/* <button>Forget Password</button> */}
+        <div className="loginHeader__wrapper">
+           <input type="" placeholder="Email" style={{marginTop :"200px"}}/>
         </div>
     )
-
 }
 
 export default ForgetPassword
