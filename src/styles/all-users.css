@@ -1,0 +1,32 @@
+.allUsers__border > div {
+    text-align: center;
+    border: 1px dotted orangered;
+    margin: 10px 350px;
+    justify-content: center;
+    align-items: center;
+}
+.title > p {
+    gap: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    color:rgb(240, 88, 32)
+}
+.input__allUsers {
+    >input {
+            width: 80%;
+            height: 80px;
+            margin: 10px;
+            border-radius: 5px;
+}
+   >label {
+     padding:10px 20px;
+}
+}
+.ViewMap {
+    display: flex;
+    justify-content: space-around;
+}
+.ViewMap > span {
+    cursor: pointer;
+    margin-top: 40px;
+}

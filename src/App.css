@@ -10,19 +10,41 @@
   display: grid;
   row-gap: 20px;
 }
-.loginHeader__wrapper > button {
-  background-color:rgb(134, 114, 219);
-  border: none;
-  padding: 10px 10px;
-  border-radius: 5px;
-}
-.loginHeader__wrapper > input {
-  padding: 10px 10px;
-  border-radius: 5px;
+.loginHeader__wrapper{
+  > button {
+    background-color:rgb(134, 114, 219);
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+  } 
+     > input {
+      padding: 10px 10px;
+      border-radius: 5px;
+    }
+
 }
 .App > p {
   padding-left: 40px;
   font-weight: 800;
   font-size: xx-large;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.MainPage__wrapper  {
+  justify-content: space-around;
+  background-color: rgba(0, 128, 0, 0.13);
+  display: flex;
+  flex-direction: row;
+}
+.MainPage__wrapper {
+  > button {
+    padding: 4px ;
+    background-color: transparent;
+    border: none;
+  }
+  > h4{
+    padding: 4px;
+  }
+} 
+.MainPage__wrapper :hover {
+  background-color: rgb(186, 197, 29);
 }

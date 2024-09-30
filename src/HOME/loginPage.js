@@ -7,7 +7,8 @@ function LoginPage() {
 
         const handleHomePage  = {
             createAccount : "/createAccount",
-            forgetPassword :"/forget Password"
+            forgetPassword :"/forget Password",
+            allUsers :"/auth/loginPage/all-users"
         }
         const handlePageToggle = (path) => {
             navigate(path)
@@ -20,7 +21,9 @@ function LoginPage() {
                 <input type="" placeholder="password"/>
             </div>
             <div className="loginHeader__wrapper">
-                <button>login</button>
+                <button onClick={()=> {
+                    handlePageToggle(handleHomePage.allUsers)
+                }}>login</button>
                 <button onClick={()=> {
                     handlePageToggle(handleHomePage.createAccount)
                 }}>Switch to setUp</button>
@@ -31,5 +34,4 @@ function LoginPage() {
         </div>
     )
 }
-
 export default LoginPage;
