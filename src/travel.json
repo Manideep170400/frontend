@@ -1,0 +1,18 @@
+{
+    "login" : {
+        "email" : "",
+        "password" :""
+    },
+    "createAccount" : {
+        "email" :"",
+        "password" :"",
+        "createPassword" :""
+    },
+    "forgetPassword"  :{
+        "forgetPassword" :""
+    },
+    "userAccount" :{
+        "image" :"",
+        "description":""
+    }
+}

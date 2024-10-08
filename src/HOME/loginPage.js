@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import '../App.css'
-
+import travel from "../travel.json"
 function LoginPage() {
         const navigate = useNavigate()
-
+        const travelData = travel
         const handleHomePage  = {
             createAccount : "/createAccount",
             forgetPassword :"/forget Password",
@@ -17,8 +17,8 @@ function LoginPage() {
         <div className="App">
              <p>Login Required</p>
             <div className="loginHeader__wrapper">
-                <input type="" placeholder="userName"/>
-                <input type="" placeholder="password"/>
+                <input type={travelData.login.email} placeholder="userName" />
+                <input type={travelData.login.password} placeholder="password"/>
             </div>
             <div className="loginHeader__wrapper">
                 <button onClick={()=> {

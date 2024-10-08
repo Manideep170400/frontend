@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
-import api from "../app/app";
-const mongo_URL =
-  "mongodb+srv://manideepreddy170400:Manideep100@cluster0.tvgnemc.mongodb.net/";
+import api from "../app/app.mjs";
 
-export const mongooseDB = (app) => {
-  mongoose.connect(mongo_URL);
-  api(app)
+const mongo_URL = "mongodb://localhost:27017/testDB";
+
+const mongooseDB = (app) => {
+  mongoose
+    .connect(mongo_URL)
     .then((result) => {
       console.log("mongoDB is connected");
+      api(app);
     })
     .catch((err) => {
       console.error("error", err);
       console.log("mongoDB is not conected");
     });
 };
+
+export default mongooseDB;

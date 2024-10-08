@@ -1,5 +1,5 @@
 import express from "express";
-import { mongooseDB } from "./BACKEND/mongoose/mongoose.mjs";
+import mongooseDB from "./BACKEND/mongoose/mongoose.mjs";
 import cors from "cors";
 
 const port = 5000;

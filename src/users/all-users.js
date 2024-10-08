@@ -1,15 +1,18 @@
 import React from "react";
+import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
 
 function AllUsers() {
+
+  const travelData = travel;
   const maps = "https://www.google.com/maps";
   const handleViewOnMap = (e) => {
     e.preventDefault(maps);
 
     window.open(maps, "_self");
   };
-  const uploadImage = () => {};
+  
   return (
     <div className="allUsers__border">
       <div className="title">
@@ -17,7 +20,7 @@ function AllUsers() {
       </div>
       <div>
         <label>
-          <input type="file" onChange={uploadImage} accept="Image/*" />
+          <input type="file" value={travelData.userAccount.image} accept="Image/*" />
         </label>
         <div className="ViewMap">
           <span onClick={handleViewOnMap}>View On Map</span>
@@ -29,7 +32,7 @@ function AllUsers() {
       </div>
       <div className="input__allUsers">
         <label>Description</label>
-        <input type="text" placeholder="decsription" />
+        <input type={travelData.userAccount.description} placeholder="decsription"/>
       </div>
     </div>
   );
