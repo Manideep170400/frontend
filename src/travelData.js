@@ -30,7 +30,7 @@ const travelHistory = (navigate) => {
         }
     } else {
         res.status = "500"
-        res.json("error s ")
+        res.json("error")
     }
     return res;
   };
