@@ -14,10 +14,10 @@ const travelHistory = (navigate) => {
       };
       const response = await axios.post(`${api_url}/createAccount`, payload);
       navigate("/create-account");
-      console.log(response.data);
+      console.log(response.config.data);
     } catch (error) {
       console.error("error", error);
-      console.log("enter a wrong data");
+      console.log("enter a wrong  create data");
     }
   };
 
@@ -27,12 +27,12 @@ const travelHistory = (navigate) => {
         email: travelData.login.email,
         password: travelData.login.password,
       };
-      const response = await axios.post(`${api_url}/auth/loginPage`, payload);
+      const response = await axios.post(`${api_url}/loginPage`, payload);
       navigate("/all-users");
-      console.log(response.data);
+      console.log(response.config.data);
     } catch (error) {
       console.error("error", error);
-      console.log("enter a wrong data");
+      console.log("enter a wrong  login data");
     }
   };
 

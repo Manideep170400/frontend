@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UserAccount() {
-  const users = "";
+  // const users = "";
   const navigate = useNavigate();
   const api_url = "http://localhost:5000";
+
   const pathObject = {
     authLoginPage: "/login",
     allUsers: "/all-users",
@@ -26,6 +27,7 @@ function UserAccount() {
         console.log("error occured", error);
       });
   }, []);
+
   return (
     <div>
       <div className="MainPage__wrapper">
@@ -36,17 +38,15 @@ function UserAccount() {
         <button onClick={() => handleTogglePage(pathObject.authLoginPage)}>
           AUTHENTICATION
         </button>
-        <button>NEW</button>
+        <button>Update</button>
       </div>
       <div>
-        {users.map((user) => {
-          return (
-            <div>
-              <div>{user.title}</div>
-              <div>{user.description}</div>
-            </div>
-          );
-        })}
+        {/* {users.map((user, index) => (
+          <div key={index}>
+            <p>{user.title}</p>
+            <p>{user.description}</p>
+          </div>
+        ))} */}
       </div>
     </div>
   );

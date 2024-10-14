@@ -8,8 +8,8 @@ function CreateAccount() {
   const navigate = useNavigate();
   const travelPlace = travelHistory(navigate);
 
-  const handleToggle = {
-    createAccount: () => travelPlace.createAccount(),
+  const handleSubmit = () => {
+    travelPlace.createAccount("/all-users");
   };
 
   return (
@@ -19,18 +19,23 @@ function CreateAccount() {
           type="email"
           placeholder="Email"
           defaultValue={travelData.createAccount.email}
+          onChange={(e) => (travelData.createAccount.email = e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
           defaultValue={travelData.createAccount.password}
+          onChange={(e) => (travelData.createAccount.password = e.target.value)}
         />
         <input
           type="password"
           placeholder="Confirm Password"
           defaultValue={travelData.createAccount.createPassword}
+          onChange={(e) =>
+            (travelData.createAccount.createPassword = e.target.value)
+          }
         />
-        <button onClick={handleToggle.createAccount}>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );

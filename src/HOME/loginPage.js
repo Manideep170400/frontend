@@ -13,7 +13,7 @@ function LoginPage() {
     login: () => travelPlace.login(),
     createAccount: () => travelPlace.createAccount(),
   };
-
+  console.log("email", travelData.login.email);
   return (
     <div className="App">
       <p>Login Required</p>
@@ -22,11 +22,17 @@ function LoginPage() {
           type="text"
           placeholder="Username"
           defaultValue={travelData.login.email}
+          onChange={(e) => {
+            travelData.login.email = e.target.value;
+          }}
         />
         <input
           type="password"
           placeholder="Password"
           defaultValue={travelData.login.password}
+          onChange={(e) => {
+            travelData.login.password = e.target.value;
+          }}
         />
       </div>
       <div className="loginHeader__wrapper">

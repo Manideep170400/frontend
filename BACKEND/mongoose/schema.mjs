@@ -1,13 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
 const loginPageSchema = new Schema({
-  email: { type: String, required: true },
-  password: { type: String, required: true },
+  email: String,
+  password: String,
 });
 
 const createAccountSchema = new Schema({
-  email: { type: String, required: true },
-  password: { type: String, required: true },
+  email: String,
+  password: String,
+  createPassword: String,
 });
 
 const userAccountSchema = new Schema({

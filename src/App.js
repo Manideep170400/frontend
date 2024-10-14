@@ -6,6 +6,7 @@ import UserAccount from "./Main/userAccount";
 import CreateAccount from "./HOME/createAccount";
 import ForgetPassword from "./HOME/forgetPassword";
 import AllUsers from "./users/all-users";
+// import UpdateData from "./users/update";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/all-users" element={<AllUsers />} />
+          {/* <Route path="/update-Data" element={<UpdateData />} /> */}
         </Routes>
       </Router>
     </div>
