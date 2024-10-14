@@ -1,27 +1,31 @@
 import mongoose, { Schema } from "mongoose";
 
-const userAccount = new Schema({
+const loginPageSchema = new Schema({
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
+const createAccountSchema = new Schema({
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
+const userAccountSchema = new Schema({
   title: String,
   image: String,
   description: String,
 });
 
-const loginPage = new Schema({
-  email: String,
-  password: String,
-});
-const createAccount = new Schema({
-  email: String,
-  password: String,
-  createPassword: String,
-});
-
 const SchemaModel = () => {
-  const userAccountSchema = mongoose.model("userAccount", userAccount);
-  const loginPageSchema = mongoose.model("loginPage", loginPage);
-  const createAccountSchema = mongoose.model("createAccount", createAccount);
+  const loginPage = mongoose.model("loginPage", loginPageSchema);
+  const createAccount = mongoose.model("createAccount", createAccountSchema);
+  const userAccount = mongoose.model("userAccount", userAccountSchema);
 
-  return userAccountSchema, loginPageSchema, createAccountSchema;
+  return {
+    loginPageSchema: loginPage,
+    createAccountSchema: createAccount,
+    userAccountSchema: userAccount,
+  };
 };
 
 export default SchemaModel;

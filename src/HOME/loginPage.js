@@ -11,7 +11,7 @@ function LoginPage() {
 
   const handleToggle = {
     login: () => travelPlace.login(),
-    account: () => travelPlace.createAccount()
+    createAccount: () => travelPlace.createAccount(),
   };
 
   return (
@@ -20,25 +20,19 @@ function LoginPage() {
       <div className="loginHeader__wrapper">
         <input
           type="text"
-          placeholder="userName"
+          placeholder="Username"
           defaultValue={travelData.login.email}
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           defaultValue={travelData.login.password}
         />
       </div>
       <div className="loginHeader__wrapper">
         <button onClick={handleToggle.login}>Login</button>
-        <button onClick={handleToggle.account}>Switch to SetUp</button>
-        <button
-          onClick={() => {
-
-          }}
-        >
-          Forget Password
-        </button>
+        <button onClick={handleToggle.createAccount}>Create Account</button>
+        <button onClick={() => {}}>Forget Password</button>
       </div>
     </div>
   );

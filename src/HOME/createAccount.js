@@ -1,14 +1,31 @@
 import React from "react";
-import travel from "../travel.json"
+import travel from "../travel.json";
+
 function CreateAccount() {
-  const travelData = travel
-    return (
-        <div className="loginHeader__wrapper App">
-          <input type={travelData.createAccount.email} placeholder="Email" style={{marginTop :"200px"}}/>
-          <input type={travelData.createAccount.password} placeholder="password"/>
-          <input type={travelData.createAccount.createPassword} placeholder="confirm Password" />
-          <button>Submit</button>
-        </div>
-    )
+  const travelData = travel;
+
+  return (
+    <div className="App">
+      <div className="loginHeader__wrapper">
+        <input
+          type="email"
+          placeholder="Email"
+          defaultValue={travelData.createAccount.email}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          defaultValue={travelData.createAccount.password}
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          defaultValue={travelData.createAccount.createPassword}
+        />
+        <button>Submit</button>
+      </div>
+    </div>
+  );
 }
+
 export default CreateAccount;
