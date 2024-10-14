@@ -14,10 +14,13 @@ function UserAccount() {
   const handleTogglePage = (path) => {
     navigate(path);
   };
+
   useEffect(() => {
     axios
       .get(`${api_url}/allUsers`)
-      .then((response) => {})
+      .then((response) => {
+        console.log(response.data);
+      })
       .catch((error) => {
         console.error("error", error);
         console.log("error occured", error);
