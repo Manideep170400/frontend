@@ -15,7 +15,7 @@ const api = (app) => {
   app.post("/auth/loginPage", async (req, res) => {
     try {
       const { email, password } = req.body;
-
+      console.log(req.body);
       const userExists = await api__app.loginPageSchema.findOne({ email });
 
       if (!userExists) {
