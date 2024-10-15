@@ -2,7 +2,7 @@ import React from "react";
 import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
-import travelHistory from "../travelData";
+// import travelHistory from "../travelData";
 
 function AllUsers() {
   const travelData = travel;
