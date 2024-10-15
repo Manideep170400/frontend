@@ -4,7 +4,6 @@ import "../App.css";
 import "../styles/all-users.css";
 
 function AllUsers() {
-
   const travelData = travel;
   const maps = "https://www.google.com/maps";
   const handleViewOnMap = (e) => {
@@ -12,7 +11,9 @@ function AllUsers() {
 
     window.open(maps, "_self");
   };
-  
+
+  console.log("image", travelData.userAccount.image);
+  console.log("description", travelData.userAccount.description);
   return (
     <div className="allUsers__border">
       <div className="title">
@@ -20,7 +21,14 @@ function AllUsers() {
       </div>
       <div>
         <label>
-          <input type="file" value={travelData.userAccount.image} accept="Image/*" />
+          <input
+            type="file"
+            defaultValue={travelData.userAccount.image}
+            onChange={(e) => {
+              travelData.userAccount.image = e.target.value;
+            }}
+            accept="Image/*"
+          />
         </label>
         <div className="ViewMap">
           <span onClick={handleViewOnMap}>View On Map</span>
@@ -32,7 +40,14 @@ function AllUsers() {
       </div>
       <div className="input__allUsers">
         <label>Description</label>
-        <input type={travelData.userAccount.description} placeholder="decsription"/>
+        <input
+          type="text"
+          placeholder="decsription"
+          defaultValue={travelData.userAccount.description}
+          onChange={(e) => {
+            travelData.userAccount.description = e.target.value;
+          }}
+        />
       </div>
     </div>
   );

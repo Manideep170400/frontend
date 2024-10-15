@@ -24,21 +24,38 @@ const travelHistory = (navigate) => {
   const login = async () => {
     try {
       let payload = {
-        email: travelData.login.email,
-        password: travelData.login.password,
+        email: travelData.login?.email,
+        password: travelData.login?.password,
       };
+      if (!travelData.login?.email || !travelData.login?.password) {
+        console.log("Please enter both email and password");
+        return "Please enter both email and password";
+      }
       const response = await axios.post(`${api_url}/loginPage`, payload);
       navigate("/all-users");
       console.log(response.config.data);
     } catch (error) {
-      console.error("error", error);
-      console.log("enter a wrong  login data");
+      console.error("Login error:", error);
+      console.log("Incorrect login data, please check your credentials");
     }
   };
-
+  const allUsers = async () => {
+    try {
+      const payload = {
+        title: travelData.userAccount.title,
+        image: travelData.userAccount.image,
+        description: travelData.userAccount.description,
+      };
+      const response = await axios.post(`${api_url}/all-users`, payload);
+      console.log(response.config.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return {
     createAccount,
     login,
+    allUsers,
   };
 };
 
