@@ -2,6 +2,7 @@ import React from "react";
 import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
+import travelHistory from "../travelData";
 
 function AllUsers() {
   const travelData = travel;
@@ -11,7 +12,6 @@ function AllUsers() {
 
     window.open(maps, "_self");
   };
-
   console.log("image", travelData.userAccount.image);
   console.log("description", travelData.userAccount.description);
   return (
