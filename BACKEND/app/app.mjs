@@ -5,10 +5,12 @@ const api__app = SchemaModel();
 const api = (app) => {
   app.get("/allUsers", async (req, res) => {
     try {
-      const response = await api__app.userAccountSchema.findOne(req.body);
-      res.send({ message: response });
+      // Use find() to retrieve all users
+      const response = await api__app.userAccountSchema.find({});
+      console.log(response);
+      res.send({ users: response });
     } catch (error) {
-      res.send(error);
+      res.status(500).send(error);
       console.error(JSON.stringify(error));
     }
   });
@@ -42,7 +44,7 @@ const api = (app) => {
   // api for create Account
   app.post("/createAccount", async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const response = await api__app.createAccountSchema.create(req.body);
       if (response.password === response.createPassword) {
         return res.json("data is created");

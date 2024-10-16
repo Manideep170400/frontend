@@ -2,7 +2,7 @@ import React from "react";
 import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
-// import travelHistory from "../travelData";
+import travelHistory from "../travelData";
 
 function AllUsers() {
   const travelData = travel;
@@ -12,8 +12,14 @@ function AllUsers() {
 
     window.open(maps, "_self");
   };
+  const travelPlace = travelHistory();
   console.log("image", travelData.userAccount.image);
   console.log("description", travelData.userAccount.description);
+
+  const addUser = {
+    users: () => travelPlace.allUsers(),
+  };
+
   return (
     <div className="allUsers__border">
       <div className="title">
@@ -49,6 +55,7 @@ function AllUsers() {
           }}
         />
       </div>
+      <button onClick={addUser.users}>AddUser</button>
     </div>
   );
 }
