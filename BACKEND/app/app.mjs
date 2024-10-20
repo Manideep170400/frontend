@@ -8,7 +8,7 @@ const api = (app) => {
       // Use find() to retrieve all users
       const response = await api__app.userAccountSchema.find({});
       console.log(response);
-      res.send({ users: response });
+      res.send({ response });
     } catch (error) {
       res.status(500).send(error);
       console.error(JSON.stringify(error));

@@ -3,6 +3,7 @@ import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
 import travelHistory from "../travelData";
+import { useNavigate } from "react-router-dom";
 
 function AllUsers() {
   const travelData = travel;
@@ -13,11 +14,9 @@ function AllUsers() {
     window.open(maps, "_self");
   };
   const travelPlace = travelHistory();
-  console.log("image", travelData.userAccount.image);
-  console.log("description", travelData.userAccount.description);
-
+  const navigate = useNavigate();
   const addUser = {
-    users: () => travelPlace.allUsers(),
+    users: () => travelPlace.allUsers(navigate("/")),
   };
 
   return (

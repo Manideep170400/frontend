@@ -5,6 +5,7 @@ const api_url = "http://localhost:5000";
 const travelData = travel;
 
 const travelHistory = (navigate) => {
+  // createAccount
   const createAccount = async () => {
     try {
       let payload = {
@@ -20,7 +21,7 @@ const travelHistory = (navigate) => {
       console.log("enter a wrong  create data");
     }
   };
-
+  // loginData
   const login = async () => {
     try {
       let payload = {
@@ -39,23 +40,36 @@ const travelHistory = (navigate) => {
       console.log("Incorrect login data, please check your credentials");
     }
   };
+  // create Users Data
   const allUsers = async () => {
     try {
       const payload = {
-        title: travelData.userAccount.title,
-        image: travelData.userAccount.image,
-        description: travelData.userAccount.description,
+        title: travel.userAccount.title,
+        image: travel.userAccount.image,
+        description: travel.userAccount.description,
       };
       const response = await axios.post(`${api_url}/all-users`, payload);
-      console.log(response.config.data);
+      console.log("User added:", response.data);
+      if (navigate) navigate("/all-users");
     } catch (error) {
-      console.error(error);
+      console.error("Error adding user:", error);
     }
   };
+  // get Users
+  const usersGet = async (setUsers) => {
+    try {
+      const response = await axios.get(`${api_url}/allUsers`);
+      setUsers(response.data.response);
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
   return {
     createAccount,
     login,
     allUsers,
+    usersGet,
   };
 };
 
