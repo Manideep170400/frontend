@@ -60,8 +60,8 @@ function UserAccount() {
         {users ? (
           users.map((user, index) => (
             <div key={index}>
-              <p>{user.title}</p>
-              <p>{user.image}</p>
+              <h5>{user.title}</h5>
+              <img src={user.image} alt="users" />
               <p>{user.description}</p>
             </div>
           ))

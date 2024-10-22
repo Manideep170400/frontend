@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import travel from "../travel.json";
 import "../App.css";
 import "../styles/all-users.css";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function AllUsers() {
   const travelData = travel;
+  const [image, setImage] = useState("");
   const maps = "https://www.google.com/maps";
   const handleViewOnMap = (e) => {
     e.preventDefault(maps);
@@ -15,10 +16,14 @@ function AllUsers() {
   };
   const travelPlace = travelHistory();
   const navigate = useNavigate();
+
   const addUser = {
     users: () => travelPlace.allUsers(navigate("/")),
   };
-
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setImage(URL.createObjectURL(file));
+  };
   return (
     <div className="allUsers__border">
       <div className="title">
@@ -26,14 +31,8 @@ function AllUsers() {
       </div>
       <div>
         <label>
-          <input
-            type="file"
-            defaultValue={travelData.userAccount.image}
-            onChange={(e) => {
-              travelData.userAccount.image = e.target.value;
-            }}
-            accept="Image/*"
-          />
+          <input type="file" onChange={handleImage} accept="image/*" />
+          {image && <img src={image} alt="Uploaded Preview" className="img" />}
         </label>
         <div className="ViewMap">
           <span onClick={handleViewOnMap}>View On Map</span>
