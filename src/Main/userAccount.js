@@ -4,50 +4,46 @@ import travelHistory from "../travelData";
 
 function UserAccount() {
   const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
-  const authLoginPage = async () => {
-    try {
-      navigate("/login");
-    } catch (error) {
-      console.error("error", error);
-    }
+
+  const navigateToAllUsers = () => {
+    navigate("/all-users");
   };
-  const update = async () => {
-    try {
-      navigate("/update");
-    } catch (error) {
-      console.error("error", error);
-    }
+
+  const authLoginPage = () => {
+    navigate("/login");
   };
+
+  const update = () => {
+    navigate("/update");
+  };
+
   let usersContent;
   const travelPlace = travelHistory(navigate);
 
   const pathObject = {
     login: () => travelPlace.login(),
-    allusers: () => travelPlace.allUsers(),
+    allusers: navigateToAllUsers,
     update: update,
     authLogin: authLoginPage,
   };
 
-  if (!users) {
+  if (!users || users.length === 0) {
     usersContent = <p>No users found</p>;
-    console.log("users", usersContent);
   } else {
-    usersContent = [];
-    for (let i = 0; i < users.length; i++) {
-      usersContent.push(
-        <div key={i}>
-          <p>{users[i].title}</p>
-          <img src={users[i].image} alt={users[i].title} />
-          <p>{users[i].description}</p>
-        </div>
-      );
-    }
+    usersContent = users.map((user, index) => (
+      <div key={index}>
+        <p>{user.title}</p>
+        <img src={user.image} alt={user.title} />
+        <p>{user.description}</p>
+      </div>
+    ));
   }
+
   useEffect(() => {
     travelPlace.usersGet(setUsers);
   }, [travelPlace]);
+
   return (
     <div>
       <div className="MainPage__wrapper">
@@ -58,7 +54,7 @@ function UserAccount() {
       </div>
 
       <div>
-        <p>{usersContent}</p>
+        <div>{usersContent}</div>
       </div>
     </div>
   );

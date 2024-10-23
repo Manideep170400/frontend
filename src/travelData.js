@@ -41,20 +41,20 @@ const travelHistory = (navigate) => {
     }
   };
   // create Users Data
-  const allUsers = async () => {
-    try {
-      const payload = {
-        title: travel.userAccount.title,
-        image: travel.userAccount.image,
-        description: travel.userAccount.description,
-      };
-      const response = await axios.post(`${api_url}/all-users`, payload);
-      console.log("User added:", response.data);
-      if (navigate) navigate("/all-users");
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
-  };
+  // const allUsers = async () => {
+  //   try {
+  //     const payload = {
+  //       title: travel.userAccount.title,
+  //       image: travel.userAccount.image,
+  //       description: travel.userAccount.description,
+  //     };
+  //     const response = await axios.post(`${api_url}/all-users`, payload);
+  //     console.log("User added:", response.data);
+  //     if (navigate) navigate("/all-users");
+  //   } catch (error) {
+  //     console.error("Error adding user:", error);
+  //   }
+  // };
   // get Users
   const usersGet = async (setUsers) => {
     try {
@@ -68,7 +68,7 @@ const travelHistory = (navigate) => {
   return {
     createAccount,
     login,
-    allUsers,
+    // allUsers,
     usersGet,
   };
 };

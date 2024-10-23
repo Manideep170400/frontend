@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import travel from "../travel.json";
+import axios from "axios";
 import "../App.css";
 import "../styles/all-users.css";
-import travelHistory from "../travelData";
-import { useNavigate } from "react-router-dom";
+
+const api_url = "http://localhost:5000";
 
 function AllUsers() {
   const travelData = travel;
-  const maps = "https://www.google.com/maps";
-  const handleViewOnMap = (e) => {
-    e.preventDefault(maps);
-
-    window.open(maps, "_self");
-  };
-  const travelPlace = travelHistory();
   const navigate = useNavigate();
-  const addUser = {
-    users: () => travelPlace.allUsers(navigate("/")),
+  const [images, setImages] = useState(null);
+
+  const handleViewOnMap = (e) => {
+    e.preventDefault();
+    window.open("https://www.google.com/maps", "_self");
+  };
+
+  const handleImages = (e) => {
+    const file = URL.createObjectURL(e.target.files[0]);
+    setImages(file);
+  };
+
+  const addUser = async () => {
+    try {
+      const payload = {
+        title: travel.userAccount.title,
+        image: travel.userAccount.image,
+        description: travel.userAccount.description,
+      };
+      const response = await axios.post(`${api_url}/all-users`, payload);
+      console.log("User added:", response.data);
+      navigate("/all-users");
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding user:", error);
+    }
   };
 
   return (
@@ -36,20 +55,14 @@ function AllUsers() {
           />
         </label>
         <label>
-          <input
-            type="file"
-            defaultValue={travelData.userAccount.image}
-            onChange={(e) => {
-              travelData.userAccount.image = e.target.value;
-            }}
-            accept="Image/*"
-          />
+          <input type="file" onChange={handleImages} accept="Image/*" />
+          {images && <img src={images} alt="preview" width="40px" />}
         </label>
         <div className="ViewMap">
           <span onClick={handleViewOnMap}>View On Map</span>
           <div className="ViewMap">
-            <span class="material-symbols-outlined">edit</span>
-            <span class="material-symbols-outlined">delete</span>
+            <span className="material-symbols-outlined">edit</span>
+            <span className="material-symbols-outlined">delete</span>
           </div>
         </div>
       </div>
@@ -57,14 +70,14 @@ function AllUsers() {
         <label>Description</label>
         <input
           type="text"
-          placeholder="decsription"
+          placeholder="description"
           defaultValue={travelData.userAccount.description}
           onChange={(e) => {
             travelData.userAccount.description = e.target.value;
           }}
         />
       </div>
-      <button onClick={addUser.users}>AddUser</button>
+      <button onClick={addUser}>AddUser</button>
     </div>
   );
 }
