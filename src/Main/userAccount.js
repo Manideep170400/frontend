@@ -56,19 +56,7 @@ function UserAccount() {
         <button onClick={pathObject.authLogin}>AUTHENTICATION</button>
         <button onClick={pathObject.update}>Update</button>
       </div>
-      <div>
-        {users ? (
-          users.map((user, index) => (
-            <div key={index}>
-              <h5>{user.title}</h5>
-              <img src={user.image} alt="users" />
-              <p>{user.description}</p>
-            </div>
-          ))
-        ) : (
-          <p>No users found</p>
-        )}
-      </div>
+
       <div>
         <p>{usersContent}</p>
       </div>

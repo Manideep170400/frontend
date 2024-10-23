@@ -1,5 +1,4 @@
 import SchemaModel from "../mongoose/schema.mjs";
-
 const api__app = SchemaModel();
 
 const api = (app) => {
@@ -7,10 +6,9 @@ const api = (app) => {
     try {
       // Use find() to retrieve all users
       const response = await api__app.userAccountSchema.find({});
-      console.log(response);
       res.send({ response });
     } catch (error) {
-      res.status(500).send(error);
+      res.send(error);
       console.error(JSON.stringify(error));
     }
   });
