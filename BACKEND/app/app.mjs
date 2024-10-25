@@ -1,6 +1,8 @@
 import SchemaModel from "../mongoose/schema.mjs";
-const api__app = SchemaModel();
+import multer from "multer";
 
+const api__app = SchemaModel();
+const upload = multer({ desc: "./public/images" });
 const api = (app) => {
   app.get("/allUsers", async (req, res) => {
     try {
@@ -55,8 +57,11 @@ const api = (app) => {
   });
 
   // api for all Users
-  app.post("/all-users", async (req, res) => {
+  app.post("/all-users", upload.array("image", 40), async (req, res) => {
     try {
+      console.log("reqFile", req.files);
+      console.log("reqbody", req.body);
+      console.log("reqBodyImage", req.body.image);
       const response = await api__app.userAccountSchema.create(req.body);
       res.send(response);
       console.log(response);

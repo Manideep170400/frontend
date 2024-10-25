@@ -18,18 +18,27 @@ function AllUsers() {
   };
 
   const handleImages = (e) => {
+    // Directly set the file object to travelData.userAccount.image
+    travelData.userAccount.image = e.target.files[0];
+
+    // Preview the image using URL.createObjectURL
     const file = URL.createObjectURL(e.target.files[0]);
     setImages(file);
   };
-
   const addUser = async () => {
     try {
-      const payload = {
-        title: travel.userAccount.title,
-        image: travel.userAccount.image,
-        description: travel.userAccount.description,
-      };
-      const response = await axios.post(`${api_url}/all-users`, payload);
+      const payload = new FormData();
+
+      payload.append("image", travelData.userAccount.image);
+      payload.append("title", travelData.userAccount.title);
+      payload.append("description", travelData.userAccount.description);
+
+      const response = await axios.post(`${api_url}/all-users`, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       console.log("User added:", response.data);
       navigate("/all-users");
       navigate("/");
@@ -55,7 +64,7 @@ function AllUsers() {
           />
         </label>
         <label>
-          <input type="file" onChange={handleImages} accept="Image/*" />
+          <input type="file" onChange={handleImages} accept="image/*" />
           {images && <img src={images} alt="preview" width="40px" />}
         </label>
         <div className="ViewMap">
