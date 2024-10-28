@@ -2,7 +2,19 @@ import SchemaModel from "../mongoose/schema.mjs";
 import multer from "multer";
 
 const api__app = SchemaModel();
-const upload = multer({ desc: "./public/images" });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const api = (app) => {
   app.get("/allUsers", async (req, res) => {
     try {
@@ -60,11 +72,17 @@ const api = (app) => {
   app.post("/all-users", upload.array("image", 40), async (req, res) => {
     try {
       console.log("reqFile", req.files);
-      console.log("reqbody", req.body);
-      console.log("reqBodyImage", req.body.image);
-      const response = await api__app.userAccountSchema.create(req.body);
+      const images = req.files.map((file) => file.path);
+      const user = {
+        ...req.body,
+        images,
+      };
+
+      const response = await api__app.userAccountSchema.create(user);
+      console.error("error");
+      console.log(user);
       res.send(response);
-      console.log(response);
+      console.log("response", response);
     } catch (error) {
       res.send(error);
       console.error(JSON.stringify(error));

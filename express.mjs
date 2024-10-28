@@ -5,6 +5,7 @@ import cors from "cors";
 const port = 5000;
 const app = express();
 
+app.use("/uploads", express.static("uploads"));
 app.use(cors());
 app.use(express.json());
 mongooseDB(app);

@@ -13,7 +13,7 @@ const createAccountSchema = new Schema({
 
 const userAccountSchema = new Schema({
   title: String,
-  image: String,
+  images: [String],
   description: String,
 });
 
