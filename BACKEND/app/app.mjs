@@ -72,6 +72,7 @@ const api = (app) => {
   app.post("/all-users", upload.array("image", 40), async (req, res) => {
     try {
       console.log("reqFile", req.files);
+
       const images = req.files.map((file) => file.path);
       const user = {
         ...req.body,
@@ -81,7 +82,7 @@ const api = (app) => {
       const response = await api__app.userAccountSchema.create(user);
       console.error("error");
       console.log(user);
-      res.send(response);
+      res.send({ response });
       console.log("response", response);
     } catch (error) {
       res.send(error);
