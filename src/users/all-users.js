@@ -39,7 +39,7 @@ function AllUsers() {
         },
       });
 
-      console.log("User added:", response.data);
+      console.log("User added:", response.data.response);
       navigate("/all-users");
       navigate("/");
     } catch (error) {

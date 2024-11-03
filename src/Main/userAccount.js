@@ -34,7 +34,11 @@ function UserAccount() {
     usersContent = users.map((user, index) => (
       <div key={index}>
         <p>{user.title}</p>
-        <img src={user.image} alt={user.title} />
+        <img
+          src={`http://localhost:5000/${user.images[0]}`}
+          alt={user.title}
+          style={{ width: "50px" }}
+        />
         <p>{user.description}</p>
       </div>
     ));
