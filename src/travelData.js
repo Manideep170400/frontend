@@ -64,12 +64,26 @@ const travelHistory = (navigate) => {
       console.error("error", error);
     }
   };
+  const deleteUser = async (id) => {
+    try {
+      const response = await axios.delete(`${api_url}/all-users/${id}`);
+      console.log("User deleted:", response.data);
+      return true;
+    } catch (error) {
+      console.error(
+        "Error deleting user:",
+        error.response ? error.response.data : error.message
+      );
+      return false;
+    }
+  };
 
   return {
     createAccount,
     login,
     // allUsers,
     usersGet,
+    deleteUser,
   };
 };
 

@@ -18,7 +18,6 @@ const upload = multer({ storage: storage });
 const api = (app) => {
   app.get("/allUsers", async (req, res) => {
     try {
-      // Use find() to retrieve all users
       const response = await api__app.userAccountSchema.find({});
       res.send({ response });
     } catch (error) {
@@ -84,6 +83,17 @@ const api = (app) => {
       console.log(user);
       res.send({ response });
       console.log("response", response);
+    } catch (error) {
+      res.send(error);
+      console.error(JSON.stringify(error));
+    }
+  });
+  // delete user data
+  app.delete("/all-users/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const response = await api__app.userAccountSchema.findByIdAndDelete(id);
+      res.send({ message: "User deleted successfully", data: response });
     } catch (error) {
       res.send(error);
       console.error(JSON.stringify(error));

@@ -6,7 +6,7 @@ import "../styles/all-users.css";
 function UserAccount() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  let [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const navigateToAllUsers = () => {
     navigate("/all-users");
@@ -27,6 +27,14 @@ function UserAccount() {
     allusers: navigateToAllUsers,
     update: update,
     authLogin: authLoginPage,
+    deleteUser: async (id) => {
+      const success = await travelPlace.deleteUser(id);
+      if (success) {
+        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+      } else {
+        console.error("Failed to delete user");
+      }
+    },
   };
 
   const showAndHide = () => {
@@ -38,11 +46,11 @@ function UserAccount() {
     usersContent = <p>No users found</p>;
   } else {
     usersContent = users.map((user, index) => (
-      <div key={index} style={{ display: "flex" }}>
+      <div key={index} className="user-content">
         <img
           src={`http://localhost:5000/${user.images[0]}`}
           alt={user.title}
-          style={{ width: "50px", height: "100px" }}
+          style={{ width: "40px" }}
         />
         <div>
           <span className="material-symbols-outlined" onClick={showAndHide}>
@@ -55,6 +63,12 @@ function UserAccount() {
             </div>
           )}
         </div>
+        <span
+          className="material-symbols-outlined"
+          onClick={() => pathObject.deleteUser(user._id)}
+        >
+          delete
+        </span>
       </div>
     ));
   }
