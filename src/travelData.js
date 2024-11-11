@@ -79,6 +79,7 @@ const travelHistory = (navigate) => {
         updateData
       );
       console.log("User updated successfully:", response.data);
+      navigate("/");
     } catch (error) {
       console.error("Error updating user:", error);
     }
