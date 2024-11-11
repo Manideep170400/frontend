@@ -99,6 +99,22 @@ const api = (app) => {
       console.error(JSON.stringify(error));
     }
   });
+  // update user data
+  app.put("/all-users/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+      const response = await api__app.userAccountSchema.findByIdAndUpdate(
+        id,
+        updateData,
+        { new: true }
+      );
+      res.send(response);
+    } catch (error) {
+      res.send(error);
+      console.error(JSON.stringify(error));
+    }
+  });
 };
 
 export default api;

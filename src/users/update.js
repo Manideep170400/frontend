@@ -1,11 +1,17 @@
-import React from "react";
+import { useLocation } from "react-router-dom";
 
-const updateDtata = () => {
+const UpdateData = () => {
+  const location = useLocation();
+  const { user } = location.state || {};
+
+  console.log("userTitle", user);
   return (
     <div>
-      <p>update Data</p>
+      <input type="text" placeholder="title" />
+      <input type="text" placeholder="description" />
+      <button>save</button>
     </div>
   );
 };
 
-export default updateDtata;
+export default UpdateData;

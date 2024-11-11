@@ -68,13 +68,19 @@ const travelHistory = (navigate) => {
     try {
       const response = await axios.delete(`${api_url}/all-users/${id}`);
       console.log("User deleted:", response.data);
-      return true;
     } catch (error) {
-      console.error(
-        "Error deleting user:",
-        error.response ? error.response.data : error.message
+      console.error("error", error);
+    }
+  };
+  const updateUser = async (id, updateData) => {
+    try {
+      const response = await axios.put(
+        `${api_url}/all-users/${id}`,
+        updateData
       );
-      return false;
+      console.log("User updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
     }
   };
 
@@ -82,6 +88,7 @@ const travelHistory = (navigate) => {
     createAccount,
     login,
     // allUsers,
+    updateUser,
     usersGet,
     deleteUser,
   };
