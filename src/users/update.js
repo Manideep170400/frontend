@@ -1,24 +1,37 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import travelHistory from "../travelData";
+import { useState } from "react";
 
 const UpdateData = () => {
   const location = useLocation();
   const { user } = location.state || {};
   const navigate = useNavigate();
   const travelPlace = travelHistory(navigate);
-  console.log("userTitle", user);
-  let title;
-  let description;
 
-  const handleSave = () => {
+  let [title, setTitle] = useState(user.title);
+  let [description, setDescription] = useState(user.description);
+
+  const handleSave = async () => {
     const updateData = { title, description };
-    travelPlace.updateUser(user._id, updateData);
+    await travelPlace.updateUser(user._id, updateData);
+    navigate("/");
   };
+
   return (
     <div>
-      <input type="text" placeholder="title" />
-      <input type="text" placeholder="description" />
-      <button onClick={handleSave}>save</button>
+      <input
+        type="text"
+        placeholder="title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 };

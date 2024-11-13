@@ -15,8 +15,8 @@ function UserAccount() {
   const travelPlace = travelHistory(navigate);
 
   const pathObject = {
-    login: travelPlace.login,
-    allusers: navigateToAllUsers,
+    login: () => travelPlace.login(),
+    allusers: () => navigateToAllUsers(),
     update: update,
     authLogin: authLoginPage,
     deleteUser: async (id) => {
